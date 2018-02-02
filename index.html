@@ -19,7 +19,7 @@
           <i>Index of&nbsp;</i>
         </h1>
       </header>
-      <ul>
+      <ul class="single-column">
         {% for _file in site.static_files %}
           <!-- {% if _file.extname %} -->
             <li><a href="{{_file.path}}">{{_file.basename}}</a></li>
