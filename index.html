@@ -17,17 +17,15 @@
       <header>
         <h1>
           <i>Index of&nbsp;</i>
-
-          {{#each paths}}
-            <a href="/{{url}}">{{name}}</a>
-          {{/each}}
         </h1>
       </header>
-      <h2>
+      <ul>
         {% for _file in site.static_files %}
-          {{_file.path}}
+          <!-- {% if _file.extname %} -->
+            <li>{{_file.path}}</li>
+          <!-- {% endif %} -->
         {% endfor %}
-      </h2>
+      </ul>
     </main>
 
     <script type="text/javascript">
