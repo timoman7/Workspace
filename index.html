@@ -22,7 +22,7 @@
       <ul>
         {% for _file in site.static_files %}
           <!-- {% if _file.extname %} -->
-            <li>{{_file.path}}</li>
+            <li><a href="{{_file.path}}">{{_file.basename}}</a></li>
           <!-- {% endif %} -->
         {% endfor %}
       </ul>
