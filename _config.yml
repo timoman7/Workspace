@@ -23,17 +23,17 @@ sass:
   style: :compressed
 
 # Site info
-url: https://daviddarnes.github.io
-title: "Dave's Open Source Stuff"
-name: "David Darnes"
-description: "Experiments, tools and other projects"
+url: https://timoman7.github.io
+title: "CollegeRepo"
+name: "Tim C"
+description: "Stuff"
 logo: "https://www.gravatar.com/avatar/6c0377abcf4da91cdd35dea4554b2a4c?s=300"
 
 twitter:
-  username: daviddarnes
+  username: SSJ3Bane
 
 author:
-  twitter: daviddarnes
+  twitter: SSJ3Bane
 
 seo:
-  author: "David Darnes"
+  author: "Tim C"
