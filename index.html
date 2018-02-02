@@ -24,7 +24,9 @@
         </h1>
       </header>
       <h2>
-        {{site.static_files}}
+        {% for _file in site.static_files %}
+          {{_file.path}}
+        {% endfor %}
       </h2>
     </main>
 
