@@ -1,0 +1,12 @@
+/node_modules/
+/Coding/Atom.lnk
+*.odt
+*.doc
+*.docx
+*.odf
+*.pdf
+*.crx
+*.pem
+*.ods
+/Coding/Processing/
+node_modules/

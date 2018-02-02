@@ -1,0 +1,6 @@
+ul .numbered{
+  list-style-type: decimal-leading-zero;
+}
+ul .bullet{
+  list-style-type: circle;
+}
