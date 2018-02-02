@@ -1,0 +1,39 @@
+# Excluded files
+exclude:
+- README.md
+- LICENSE
+- CNAME
+
+# Gems
+gems:
+- jekyll-github-metadata
+- jekyll-sitemap
+- jekyll-mentions
+- jekyll-paginate
+- jekyll-seo-tag
+- jekyll-redirect-from
+- jemoji
+
+repository: "timoman7/timoman7.github.io"
+
+jekyll-mentions: https://twitter.com
+
+# SCSS
+sass:
+  style: :compressed
+
+# Site info
+url: https://daviddarnes.github.io
+title: "Dave's Open Source Stuff"
+name: "David Darnes"
+description: "Experiments, tools and other projects"
+logo: "https://www.gravatar.com/avatar/6c0377abcf4da91cdd35dea4554b2a4c?s=300"
+
+twitter:
+  username: daviddarnes
+
+author:
+  twitter: daviddarnes
+
+seo:
+  author: "David Darnes"
