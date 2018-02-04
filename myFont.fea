@@ -1,0 +1,37 @@
+languagesystem DFLT dflt;
+languagesystem latn dflt;
+
+@lowercase = [a b c d e f g h i j k l m n o p q r s t u v w x y z];
+@uppercase = [A B C D E F G H I J K L M N O P Q R S T U V W X Y Z];
+@smallcaps = [A.sc B.sc C.sc D.sc E.sc F.sc G.sc H.sc I.sc J.sc K.sc L.sc M.sc N.sc O.sc P.sc Q.sc R.sc S.sc T.sc U.sc V.sc W.sc X.sc Y.sc Z.sc];
+
+@figures = [zero one two three four five six seven eight nine];
+@figuresSmallcap = [zero.sc one.sc two.sc three.sc four.sc five.sc six.sc seven.sc eight.sc nine.sc];
+
+@puncuation = [exclam period comma question colon semicolon];
+@puncuationSmallcap = [exclam.sc period.sc comma.sc question.sc colon.sc semicolon.sc];
+
+@symbols = [quotedbl numbersign dollar percent ampersand quotesingle parenleft parenright asterisk plus comma hyphen period slash less equal greater at bracketleft bracketright backslash asciicircum underscore grave braceleft braceright asciitilde bar];
+@symbolsSmallcap = [quotedbl.sc numbersign.sc dollar.sc percent.sc ampersand.sc quotesingle.sc parenleft.sc parenright.sc asterisk.sc plus.sc comma.sc hyphen.sc period.sc slash.sc less.sc equal.sc greater.sc at.sc bracketleft.sc bracketright.sc backslash.sc asciicircum.sc underscore.sc grave.sc braceleft.sc braceright.sc asciitilde.sc bar.sc];
+
+feature smcp {
+  sub @lowercase by @smallcaps;
+} smcp;
+
+feature c2sc {
+  sub @uppercase by @smallcaps;
+  sub @figures by @figuresSmallcap;
+  sub @symbols by @symbolsSmallcap;
+  sub @puncuation by @puncuationSmallcap;
+} c2sc;
+
+feature frac {
+    @slash = [slash fraction];
+
+    lookup FractionNumerators {
+        sub @figures by @figuresNumerator;
+    } FractionNumerators;
+
+    sub [@slash @figuresDenominator] @figuresNumerator' by @figuresDenominator;
+    sub slash by fraction;
+} frac;
