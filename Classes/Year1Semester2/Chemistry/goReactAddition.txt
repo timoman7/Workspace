@@ -1,0 +1,101 @@
+function addMol(molSymbol, amount){
+for(var o = 0; o < amount; o++){
+var i = elements.indexOf(elements.find((e)=>{if(e.symbol==molSymbol){return 1}else{return 0}}));
+var mol = new Molecule(elements[i].symbol);
+					var ele = new Element(elements[i].x, elements[i].y, elements[i].red, elements[i].green, elements[i].blue, elements[i].ionTopRed, elements[i].ionTopGreen, elements[i].ionTopBlue, elements[i].ionBottomRed, elements[i].ionBottomBlue, elements[i].ionBottomGreen, elements[i].name, elements[i].symbol, elements[i].num, elements[i].rad, elements[i].atomRed, elements[i].atomGreen, elements[i].atomBlue);
+					mol.mElements.push(ele);
+					mol.mElements[0].dragok = true;
+					molecules.push(mol);}
+}
+function clearTable(){
+	molecules = [];
+}
+function makeTHC(){
+addMol("H",30);
+addMol("C",21);
+addMol("O",2);
+}
+
+function readElements() {
+	if (window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	}
+
+
+	xmlhttp.open("GET", "xml/periodic.xml", false);
+	xmlhttp.send("");
+	xmlDoc = xmlhttp.responseXML;
+
+	elements = [];
+
+	var x = xmlDoc.getElementsByTagName("ATOM");
+	var i;
+	for (i = 0; i < x.length; i++) {
+
+		var xPos = (x[i].getElementsByTagName("XPOS")[0].childNodes[0].nodeValue);
+		var yPos = (x[i].getElementsByTagName("YPOS")[0].childNodes[0].nodeValue);
+		var sym = (x[i].getElementsByTagName("SYMBOL")[0].childNodes[0].nodeValue);
+		var name = (x[i].getElementsByTagName("NAME")[0].childNodes[0].nodeValue);
+		var num = (x[i].getElementsByTagName("ATOMIC_NUMBER")[0].childNodes[0].nodeValue);
+		var r = (x[i].getElementsByTagName("RED")[0].childNodes[0].nodeValue);
+		var g = (x[i].getElementsByTagName("GREEN")[0].childNodes[0].nodeValue);
+		var b = (x[i].getElementsByTagName("BLUE")[0].childNodes[0].nodeValue);
+		var ar = (x[i].getElementsByTagName("ARED")[0].childNodes[0].nodeValue) * 1;
+		var ag = (x[i].getElementsByTagName("AGREEN")[0].childNodes[0].nodeValue) * 1;
+		var ab = (x[i].getElementsByTagName("ABLUE")[0].childNodes[0].nodeValue) * 1;
+		var ir = (x[i].getElementsByTagName("ION_RED")[0].childNodes[0].nodeValue);
+		var ig = (x[i].getElementsByTagName("ION_GREEN")[0].childNodes[0].nodeValue);
+		var ib = (x[i].getElementsByTagName("ION_BLUE")[0].childNodes[0].nodeValue);
+		var br = (x[i].getElementsByTagName("OTHER_RED")[0].childNodes[0].nodeValue);
+		var bg = (x[i].getElementsByTagName("OTHER_GREEN")[0].childNodes[0].nodeValue);
+		var bb = (x[i].getElementsByTagName("OTHER_BLUE")[0].childNodes[0].nodeValue);
+		var rad = (x[i].getElementsByTagName("ATOMIC_RADIUS")[0].childNodes[0].nodeValue);
+		var ld = (x[i].getElementsByTagName("LEWIS_DOTS")[0].childNodes[0].nodeValue);
+		var weight = (x[i].getElementsByTagName("ATOMIC_WEIGHT")[0].childNodes[0].nodeValue);
+		
+		// //console.log(name);
+		// //console.log(ar);
+		// //console.log(ag);
+		// //console.log(ab);
+		var e = new Element(xPos, yPos, r, g, b, ir, ig, ib, br, bg, bb, name, sym, num, rad, ar, ag, ab, ld);
+		e.weight = weight;
+		e.dragok = false;
+		elements.push(e);
+
+	}
+	////console.log(elements.length);
+	return elements;
+
+}
+elements = [];
+readElements();
+function getElement(mSymbol){
+	return elements.find((e)=>{if(e.symbol==mSymbol){return 1}else{return 0}});
+}
+function getMol(mSymbol,mass){
+	let _Element = getElement(mSymbol);
+	let molCount = mass/parseFloat(_Element.weight);
+	return molCount;
+
+}
+function getMass(mSymbol,mol){
+	let _Element = getElement(mSymbol);
+	let mass = mol*parseFloat(_Element.weight);
+	return mass;
+
+}
+
+function getTotalEl(){
+    var totalEl = {};
+    for(let m in molecules){
+        for(let mm in molecules[m].mElements){
+			mmEl = molecules[m].mElements[mm];
+            if(totalEl[mmEl.symbol]){
+                totalEl[mmEl.symbol]++;
+            }else{
+                totalEl[mmEl.symbol] = 1;
+            }
+        }
+    }
+	return totalEl;
+}
